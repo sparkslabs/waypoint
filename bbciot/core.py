@@ -60,7 +60,37 @@ class LineSplitter(Axon.Component.component):  # CHANGE: EXTRA
         self.send(Axon.Ipc.producerFinished(), "signal")
         yield 1
 
+class Logger(Axon.Component.component):
+    logfile = "test.log"
+    def logline(self, line):
+        try:
+            x = open(self.logfile,"a")
+        except IOError:
+            x = open(self.logfile,"w")
+        x.write(line+"\n")
+        x.flush()
+        x.close()
 
+
+    def main(self):
+        try:
+            buffer = ""
+            while True:
+                for message in self.Inbox():
+                    self.logline(message)
+                if self.dataReady("control"):
+                    raise GotShutdownMessage()
+                if not self.anyReady():
+                    self.pause()
+                yield 1
+
+        except GotShutdownMessage:
+            self.send(self.recv("control"), "signal")
+            yield 1
+            return
+
+        self.send(Axon.Ipc.producerFinished(), "signal")
+        yield 1
 
 
 

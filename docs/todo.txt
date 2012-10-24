@@ -4,13 +4,6 @@ Todo
 These are roughly in desired order.
 
 
-2. FEP / Aggregator software
-Could be a server or client, depending on whether nodes - tag raders - are clients or servers. TBD.
-Output: Data archive or log file of activity from tags on nodes
-
-Depends: Task 1 (item 1), Task 3 (item 2)
-
-Depended on by: Task 2, item 2
 
 3. Hardware set up for multiple tag readers
 

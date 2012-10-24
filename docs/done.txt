@@ -18,10 +18,48 @@ Short log
     * Maintenance & startup changes - no longer auto start the systems - allowing integration with other things. (eg allows the FEP and tag reader code to be co-located inside the same process)
     * node_id is configurable at top level
     * Top level task "1. Implement Tag Reading Module" is complete
+    * Top level task "2. FEP/Aggregator software" is complete
+    * bbciot.core.Logger component created.
+    * Logfile is configurable for TagReader
+    * Logfile is configurable for Collator
+    * Logfile for both now defaults to appending & flushing
+    * Collator explicitly configures logfile and ports
+    * TagReader explicitly configures all parameters
+    * Collator logs conninfo, time and node record
+    * Script to create run/logging directory - for development
+       * Production would use the debian script
+
+
+Data formats:
+    * TagReader outputs records of form [timestamp, tagid, nodeid]
+        * Timestamp is a float of seconds since the start of the 1970 unix epoch
+            - This timestamp is the time of reading on the reader
+        * tagid is a base 10 representation of the RFID tag id
+        * nodeid is a passed through nodeid as configured by the tag reader (should be a string)
+
+    * Collator (FEP) outputs log file of records of form:
+        * [ conninfo, timestamp, noderecord]
+            * conninfo is an object with following keys:
+                localip - string - IP address
+                localport - integer - port  number
+                peer - string - IP address
+                peerport - integer - port  number
+            * timestamp is a float of seconds since the start of the 1970 unix epoch
+                - This is the time on the collator at time of reception
+            * noderecord is an unmodified record from tagreader
+
 
 Task log related complete:
 
-1. Implement Tag Reading Module
-Output: ( time, tag id, node id) (as JSON object)
+  * 1. Implement Tag Reading Module
+    Output: ( time, tag id, node id) (as JSON object)
+
+  * 2. FEP / Aggregator software
+    Could be a server or client, depending on whether nodes - tag raders - are clients or servers. TBD.
+    Output: Data archive or log file of activity from tags on nodes
+
+
+
+
 
 

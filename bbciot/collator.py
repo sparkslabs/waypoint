@@ -4,6 +4,8 @@ Currently called the front end processor, this actually
 collates data from tag readers for use by whole event analysis
 
 """
+import json
+import time
 from Kamaelia.Util.Backplane import *
 from Kamaelia.Chassis.Pipeline import Pipeline
 from Kamaelia.Chassis.PAR import PAR
@@ -12,30 +14,35 @@ from Kamaelia.Util.Console import ConsoleEchoer
 from bbciot.core import LineSplitter
 from Kamaelia.Util.PureTransformer import PureTransformer
 from Kamaelia.File.Writing import SimpleFileWriter
+from bbciot.core import Logger
 
 from Kamaelia.Chassis.ConnectedServer import FastRestartServer
 
-def MyProtocol(**args):
+
+def IncomingNodeEventsProtocol(**conninfo):
     return Pipeline(
             LineSplitter(),
+            PureTransformer(lambda x: json.loads(x)), # Deserialise
+            PureTransformer(lambda x: [conninfo, time.time(), x]), # Tag with connection info
             PublishTo("TAGEVENTS")
            )
 
 
-def Collator(readers=None, listenport=1600):
+def Collator(listenport=1600, logfile="collated_tag_events.log"):
     return PAR (
                 Backplane("TAGEVENTS"),
 
                 Pipeline(
                     SubscribeTo("TAGEVENTS"),
+                    PureTransformer(lambda x: json.dumps(x)+"\n"), # \n delimited JSON records
                     ConsoleEchoer()
                 ),
 
-                FastRestartServer(protocol=MyProtocol, port=listenport),
+                FastRestartServer(protocol=IncomingNodeEventsProtocol, port=listenport),
 
                 Pipeline(
                     SubscribeTo("TAGEVENTS"),
-                    PureTransformer(lambda x: x+"\n"), # line splitter swallows \n's
-                    SimpleFileWriter("tagevents.log")
+                    PureTransformer(lambda x: json.dumps(x)), # JSON records
+                    Logger(logfile=logfile) # Logger adds \n to delimit records
                 )
                )

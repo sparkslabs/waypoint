@@ -2,4 +2,6 @@
 
 from bbciot.collator import Collator
 
-Collator().run()
+Collator(listenport=1600,
+         logfile="/var/run/bbciotservice/collated_tag_events.log"
+        ).run()
