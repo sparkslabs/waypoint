@@ -1,0 +1,6 @@
+#!/usr/bin/python
+
+from pyexample.service import main
+
+main()
+

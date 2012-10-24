@@ -1,0 +1,3 @@
+echo "Adding pyexampleservice user"
+sudo useradd pyexampleservice --system --no-create-home  --home-dir /nonexistent
+echo "done"
