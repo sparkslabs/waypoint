@@ -3,22 +3,7 @@ Todo
 
 These are roughly in desired order.
 
-
-
 3. Hardware set up for multiple tag readers
-
-Depends: Task 1
-
-Depended on by: Task 2, item 2
-
-14. Implement local logging for TagReaders
-
-4. Define Actuator Behaviour
-When the actuator analyser has analysed the data, it will cause the actuator to do something. A decision needs to be taken about what actuator is chosen and what the required behaviour should be.
-
-Depends: NA
-
-Depended on by: Task 5
 
 5. Implement actuator analyser
 

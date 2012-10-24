@@ -28,7 +28,8 @@ Short log
     * Collator logs conninfo, time and node record
     * Script to create run/logging directory - for development
        * Production would use the debian script
-
+    * Top Level task "14. Implement local logging for TagReaders" is complete
+    * Top Level task "4. Define Actuator Behaviour" is complete
 
 Data formats:
     * TagReader outputs records of form [timestamp, tagid, nodeid]
@@ -48,7 +49,9 @@ Data formats:
                 - This is the time on the collator at time of reception
             * noderecord is an unmodified record from tagreader
 
+    * Actuator behaviour is to send a "ping" message to an outbox
 
+            
 Task log related complete:
 
   * 1. Implement Tag Reading Module
@@ -58,7 +61,12 @@ Task log related complete:
     Could be a server or client, depending on whether nodes - tag raders - are clients or servers. TBD.
     Output: Data archive or log file of activity from tags on nodes
 
+   * 14. Implement local logging for TagReaders
 
+   * 4. Define Actuator Behaviour
+        When the actuator analyser has analysed the data, it will cause
+        the actuator to do something. A decision needs to be taken about
+        what actuator is chosen and what the required behaviour should be.
 
 
 
