@@ -1,6 +1,7 @@
 Done
 ====
 
+Short log
     * First checkin, mirror of sketches base+20min hack
     * Renamed hack, moved into scripts.
     * Changed packaging template of pyexample to bbciot throughout
@@ -15,3 +16,12 @@ Done
     * Split single reader/fep: 2 scripts reader/collator
     * Reversed direction of clients/servers
     * Maintenance & startup changes - no longer auto start the systems - allowing integration with other things. (eg allows the FEP and tag reader code to be co-located inside the same process)
+    * node_id is configurable at top level
+    * Top level task "1. Implement Tag Reading Module" is complete
+
+Task log related complete:
+
+1. Implement Tag Reading Module
+Output: ( time, tag id, node id) (as JSON object)
+
+

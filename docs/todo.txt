@@ -3,8 +3,6 @@ Todo
 
 These are roughly in desired order.
 
-1. Implement Tag Reading Module
-Output: ( time, tag id, node id) (as JSON object)
 
 2. FEP / Aggregator software
 Could be a server or client, depending on whether nodes - tag raders - are clients or servers. TBD.
