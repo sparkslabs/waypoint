@@ -1,4 +1,4 @@
 #!/usr/bin/python
 
-from bbciot.reader import RunReader
-RunReader(1500)
+from bbciot.reader import TagReaderClient
+TagReaderClient("127.0.0.1", 1600, 1500)

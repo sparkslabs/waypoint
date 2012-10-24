@@ -12,26 +12,25 @@ from bbciot.core import LineSplitter
 from Kamaelia.Util.PureTransformer import PureTransformer
 from Kamaelia.File.Writing import SimpleFileWriter
 
+from Kamaelia.Chassis.ConnectedServer import FastRestartServer
 
-def RunCollator(readers=None):
+def MyProtocol(**args):
+    return Pipeline(
+            LineSplitter(),
+            PublishTo("TAGEVENTS")
+           )
 
-    if readers == None:
-        readers = [ ("127.0.0.1",1500) ]  # Default to testing locally
+
+def RunCollator(readers=None, listenport=1600):
 
     Backplane("TAGEVENTS").activate()
-
-    for reader in readers:
-       ip, port = reader
-       Pipeline(
-           TCPClient(ip,port),
-           LineSplitter(),
-           PublishTo("TAGEVENTS")
-       ).activate()
 
     Pipeline(
         SubscribeTo("TAGEVENTS"),
         ConsoleEchoer()
     ).activate()
+
+    FastRestartServer(protocol=MyProtocol, port=listenport).activate()
 
     Pipeline(
         SubscribeTo("TAGEVENTS"),
