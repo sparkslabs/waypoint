@@ -1,0 +1,9 @@
+Done
+====
+
+    * First checkin, mirror of sketches base+20min hack
+    * Renamed hack, moved into scripts.
+    * Changed packaging template of pyexample to bbciot throughout
+    * Debian packaging cleanup
+    * Added some explanatory notes/aspirations to the README.md file
+    * Added the todo/done files. Done pre-populated with contents of git shortlog
