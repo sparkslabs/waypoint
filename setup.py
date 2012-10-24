@@ -26,9 +26,9 @@ def find_packages(path, base="" ):
 packages = find_packages(".")
 package_names = packages.keys()
 
-setup(name = "pyexample-sketches",
+setup(name = "bbciot-sketches",
       version = "1.0.0",
-      description = "pyexample-sketches",
+      description = "bbciot-sketches",
      
       author = "Michael Sparks",
       author_email = "michael.sparks@bbc.co.uk",
@@ -37,11 +37,11 @@ setup(name = "pyexample-sketches",
       packages = package_names,
       package_dir = packages,
       scripts = [
-                  'scripts/pyexampleservice',
+                  'scripts/bbciotservice',
                 ],
       data_files=[
-                   ('/etc/init',         ['etc/init/pyexampleservice.conf']),
-                   ('/etc/pyexampleservice', ["etc/pyexampleservice/config.json"])
+                   ('/etc/init',         ['etc/init/bbciotservice.conf']),
+                   ('/etc/bbciotservice', ["etc/bbciotservice/config.json"])
                  ],
 
       long_description = """

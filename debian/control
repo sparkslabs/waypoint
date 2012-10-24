@@ -1,14 +1,14 @@
-Source: pyexample-sketches
+Source: bbciot-sketches
 Maintainer: Michael Sparks <michael.sparks@bbc.co.uk>
 Section: python
 Priority: optional
 Build-Depends: python-all (>= 2.6.6-3), debhelper (>= 7)
 Standards-Version: 3.9.1
 
-Package: python-pyexample-sketches
+Package: python-bbciot-sketches
 Architecture: all
 Depends: ${misc:Depends}, ${python:Depends}
-Description: pyexample-sketches
+Description: bbciot-sketches
  .
  This is initially just a collection of random test ideas. It may grow into
  something more interesting.  It may not.

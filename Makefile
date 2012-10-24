@@ -1,6 +1,6 @@
 PYTHON=`which python`
 DESTDIR=/
-PROJECT=pyexample
+PROJECT=bbciot
 
 all:
 	@echo "make source - Create source package"
