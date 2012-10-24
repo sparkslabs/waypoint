@@ -12,14 +12,16 @@ from Kamaelia.Internet.TCPClient import TCPClient
 def DebugTapProtocol(**args):
     return SubscribeTo("TAGS")
 
-def TagReaderClient(collator_ip="127.0.0.1", collator_port=1600, debug_port=1600):
+def TagReaderClient(collator_ip="127.0.0.1", collator_port=1600, node_id=1, debug_port=1500):
+
     # Use the PAR component to allow deferred activation, and to allow the components
     # to be used as a unit.
+
     return PAR(
                 Backplane("TAGS"),
 
                 Pipeline(
-                    FestivalTagReader(1),
+                    FestivalTagReader(node_id),
                     PublishTo("TAGS")
                 ),
 

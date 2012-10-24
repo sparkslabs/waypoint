@@ -2,5 +2,6 @@
 
 from bbciot.reader import TagReaderClient
 
-TagReaderClient("127.0.0.1", 1600, 1500).run()
+# All the arguments here should be externally configurable
+TagReaderClient("127.0.0.1", 1600, node_id=1, debug_port=1500).run()
 
