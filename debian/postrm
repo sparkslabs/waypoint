@@ -1,3 +1,5 @@
+#DEBHELPER#
+
 echo "Removing user"
 deluser bbciotservice
 echo "done"

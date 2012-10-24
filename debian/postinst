@@ -1,3 +1,5 @@
+#DEBHELPER#
+
 echo "Adding bbciotservice user"
 sudo useradd bbciotservice --system --no-create-home  --home-dir /nonexistent
 echo "done"
