@@ -7,3 +7,11 @@ Done
     * Debian packaging cleanup
     * Added some explanatory notes/aspirations to the README.md file
     * Added the todo/done files. Done pre-populated with contents of git shortlog
+    * First extractions of hack into package
+    * For tracking issues as they arise
+    * Extracted reader code out to bbciot.reader.py
+    * ignore generated files
+    * Extracted collator code to bbciot.collator.py
+    * Split single reader/fep: 2 scripts reader/collator
+    * Reversed direction of clients/servers
+    * Maintenance & startup changes - no longer auto start the systems - allowing integration with other things. (eg allows the FEP and tag reader code to be co-located inside the same process)
