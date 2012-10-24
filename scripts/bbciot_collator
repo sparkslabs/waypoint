@@ -1,4 +1,5 @@
 #!/usr/bin/python
 
-from bbciot.collator import RunCollator
-RunCollator()
+from bbciot.collator import Collator
+
+Collator().run()

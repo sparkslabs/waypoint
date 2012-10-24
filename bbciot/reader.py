@@ -3,48 +3,37 @@ Code related to a reader profile
 """
 from Kamaelia.Util.Backplane import *
 from Kamaelia.Chassis.Pipeline import Pipeline
+from Kamaelia.Chassis.PAR import PAR
 from bbciot.core import FestivalTagReader
 from Kamaelia.Chassis.ConnectedServer import FastRestartServer
 from Kamaelia.Util.Console import ConsoleEchoer
 from Kamaelia.Internet.TCPClient import TCPClient
 
-def MyProtocol(**args):
+def DebugTapProtocol(**args):
     return SubscribeTo("TAGS")
 
-def RunReader(port=1500):
-    Backplane("TAGS").activate()
-
-    Pipeline(
-        FestivalTagReader(1),
-        PublishTo("TAGS")
-    ).activate()
-
-    FastRestartServer(protocol=MyProtocol, port=port).activate()
-
-    # For debugging purposes
-    Pipeline(
-        SubscribeTo("TAGS"),
-        ConsoleEchoer()
-    ).run()
-
 def TagReaderClient(collator_ip="127.0.0.1", collator_port=1600, debug_port=1600):
-    Backplane("TAGS").activate()
+    # Use the PAR component to allow deferred activation, and to allow the components
+    # to be used as a unit.
+    return PAR(
+                Backplane("TAGS"),
 
-    Pipeline(
-        FestivalTagReader(1),
-        PublishTo("TAGS")
-    ).activate()
+                Pipeline(
+                    FestivalTagReader(1),
+                    PublishTo("TAGS")
+                ),
 
-    FastRestartServer(protocol=MyProtocol, port=debug_port).activate()
+                FastRestartServer(protocol=DebugTapProtocol, port=debug_port),
 
-    # Connect to Collator
-    Pipeline(
-        SubscribeTo("TAGS"),
-        TCPClient(collator_ip,collator_port)
-    ).activate()
+                # Connect to Collator
+                Pipeline(
+                    SubscribeTo("TAGS"),
+                    TCPClient(collator_ip,collator_port)
+                ),
 
-    # For debugging purposes
-    Pipeline(
-        SubscribeTo("TAGS"),
-        ConsoleEchoer()
-    ).run()
+                # For debugging purposes
+                Pipeline(
+                    SubscribeTo("TAGS"),
+                    ConsoleEchoer()
+                ),
+              )
