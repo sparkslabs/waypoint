@@ -31,6 +31,13 @@ Short log
     * Top Level task "14. Implement local logging for TagReaders" is complete
     * Top Level task "4. Define Actuator Behaviour" is complete
 
+    * Basic aggregate analysis component implemented.
+        - Run as bbciot_aggregate_analyser
+        - Outputs the set of tag ids seen over all time (for the given log file)
+        - has a second mode which can cause it to drive an actuator
+        - The actuator component is currently a stub and receive a PING message
+
+    
 Data formats:
     * TagReader outputs records of form [timestamp, tagid, nodeid]
         * Timestamp is a float of seconds since the start of the 1970 unix epoch

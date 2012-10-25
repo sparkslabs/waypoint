@@ -3,11 +3,16 @@ Issues
 
 Note of issues with various pieces of code as they arise.
 
-    * Lack of tests
+    * Lack of real tests beyond adhoc
     * No way to shutdown bbciot.core.TagReader component
+    * No way to shutdown bbciot.analysis.FileWatcher component
     * bbciot.service does not contain a useful service
     * bbciot.sketch.* is currently junk
     * Use of SimpleFileWriter will result in logfile being destroyed each run
+        - Mitigated by bbciot.core.Logger
 
+    * Code needs to be deployed onto multiple machines for it to be a real test
+    * Actuator code in aggregate analyser is a stub - needs to join to the Serial
+      output code
+      
 
-    

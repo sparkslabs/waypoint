@@ -74,7 +74,6 @@ class Logger(Axon.Component.component):
 
     def main(self):
         try:
-            buffer = ""
             while True:
                 for message in self.Inbox():
                     self.logline(message)
