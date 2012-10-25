@@ -138,7 +138,45 @@ class Uniq(Axon.Component.component):
         yield 1
 
 
-        
+class TagStreamEvent(Axon.Component.component):
+    temporal_separation = 0.25
+    def main(self):
+        try:
+            lastevent_time = 0
+            lastid = None
+            min_delta = self.temporal_separation
+            while True:
+                for noderec in self.Inbox():
+                    timestamp, tagid, nodeid = noderec
+                    if lastid != nodeid:
+                        lastid = nodeid
+                        print
+                        print "NEW TAG SEEN - GO PING"
+                        print
+                        self.send(noderec, "outbox")
+                    elif (timestamp - lastevent_time) > min_delta:
+                        self.send(noderec, "outbox")
+                        print
+                        print "SAME TAG SEEN - GO PING"
+                        print
+                    lastevent_time = timestamp
+
+                if self.dataReady("control"):
+                    raise GotShutdownMessage()
+                if not self.anyReady():
+                    self.pause()
+                yield 1
+
+        except GotShutdownMessage:
+            self.send(self.recv("control"), "signal")
+            yield 1
+            return
+
+        self.send(Axon.Ipc.producerFinished(), "signal")
+        yield 1
+
+
+
 # This is inefficient, but has a primary / initial aim of "just working"
 def AllTimeAggregateAnalyser(logfile):
     return Pipeline(

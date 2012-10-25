@@ -1,6 +1,7 @@
 """
 Code related to a reader profile
 """
+import json
 from Kamaelia.Util.Backplane import *
 from Kamaelia.Chassis.Pipeline import Pipeline
 from Kamaelia.Chassis.PAR import PAR
@@ -10,6 +11,7 @@ from Kamaelia.Chassis.ConnectedServer import FastRestartServer
 from Kamaelia.Util.Console import ConsoleEchoer
 from Kamaelia.Util.PureTransformer import PureTransformer
 from Kamaelia.Internet.TCPClient import TCPClient
+from bbciot.analysis import TagStreamEvent
 
 def DebugTapProtocol(**args):
     return SubscribeTo("TAGS")
@@ -27,7 +29,7 @@ def TagReaderClient(collator_ip="127.0.0.1",
                 Backplane("TAGS"),
 
                 Pipeline(
-                    FestivalTagReader(node_id),
+                    FestivalTagReader(node_id),   # FIXME: Probably don't want json encoding in here
                     PublishTo("TAGS")
                 ),
 
@@ -42,6 +44,16 @@ def TagReaderClient(collator_ip="127.0.0.1",
                     SubscribeTo("TAGS"),
                     PureTransformer(lambda x: x[:-1]), # Strip trailing /n
                     Logger(logfile=logfile),
+                ),
+
+                Pipeline(
+                    SubscribeTo("TAGS"),
+                    PureTransformer(lambda x: x[:-1]),         # Strip trailing /n
+                    PureTransformer(lambda x: json.loads(x) ), # Restore record
+                    TagStreamEvent(),                          # Extract tag taps
+
+                    PureTransformer(lambda x: repr(x)+"\n"),   # In place of actuator
+                    ConsoleEchoer()               # In place of actuator
                 ),
 
                 # For debugging purposes
