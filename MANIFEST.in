@@ -1,1 +1,8 @@
 recursive-include etc *
+recursive-include debian *
+recursive-include docs *
+include Makefile
+include README.md
+include MANIFEST.in
+recursive-include scripts *
+
