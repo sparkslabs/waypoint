@@ -26,9 +26,9 @@ def find_packages(path, base="" ):
 packages = find_packages(".")
 package_names = packages.keys()
 
-setup(name = "bbciot-sketches",
+setup(name = "bbciot",
       version = "1.0.0",
-      description = "bbciot-sketches",
+      description = "bbciot",
      
       author = "Michael Sparks",
       author_email = "michael.sparks@bbc.co.uk",
@@ -45,7 +45,6 @@ setup(name = "bbciot-sketches",
                  ],
 
       long_description = """
-This is initially just a collection of random test ideas. It may grow into
-something more interesting.  It may not.
-"""
+Package for BBC IOT related code.
+      """
       )
