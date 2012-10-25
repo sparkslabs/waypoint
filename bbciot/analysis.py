@@ -82,6 +82,37 @@ class UniqueTags(Axon.Component.component):
         self.send(Axon.Ipc.producerFinished(), "signal")
         yield 1
 
+class RecentTags(Axon.Component.component):
+    maxage = 600
+    def main(self):
+        try:
+            while True:
+                for tagevents in self.Inbox():
+                    now = time.time()
+                    earliest = now - self.maxage
+                    recent_events = []
+                    for tagevent in tagevents:
+                        conninfo, timestamp, noderec = tagevent
+                        
+                        if timestamp > earliest:
+                            recent_events.append(tagevent)
+                    self.send(recent_events, "outbox")
+
+                if self.dataReady("control"):
+                    raise GotShutdownMessage()
+                if not self.anyReady():
+                    self.pause()
+                yield 1
+
+        except GotShutdownMessage:
+            self.send(self.recv("control"), "signal")
+            yield 1
+            return
+
+        self.send(Axon.Ipc.producerFinished(), "signal")
+        yield 1
+
+
 class Uniq(Axon.Component.component):
     def main(self):
         try:
@@ -107,11 +138,21 @@ class Uniq(Axon.Component.component):
         yield 1
 
 
+        
 # This is inefficient, but has a primary / initial aim of "just working"
 def AllTimeAggregateAnalyser(logfile):
     return Pipeline(
                 FileWatcher(watchfile=logfile), # Wait for file to change
                 FileSlurper(slurpfile=logfile), # When it does, read it
+                UniqueTags(),                   # Then isolate unique tags inside
+                Uniq()                          # Remove duplicate events
+           )
+
+def RecentEventsAnalyser(logfile,maxage=10):
+    return Pipeline(
+                FileWatcher(watchfile=logfile), # Wait for file to change
+                FileSlurper(slurpfile=logfile), # When it does, read it
+                RecentTags(maxage=maxage),      # Only pass through those from past 10 minutes
                 UniqueTags(),                   # Then isolate unique tags inside
                 Uniq()                          # Remove duplicate events
            )
