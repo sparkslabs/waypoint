@@ -11,16 +11,24 @@ These are *roughly* in desired order.
 5. Implement actuator analyser
 
 An analyser takes logged events from the data archive, processes them and triggers the actuator to do something.
-This is essentially an overall analyser which performs aggregate analysis. (eg total number of tag taps)
+
+This is essentially an overall analyser which performs aggregate analysis. (eg total number of tag taps)  **DONE**
 
 Agreed that for the overall project:
 
-We need an aggregation function to be implemented.  
+We need an aggregation function to be implemented.  **DONE**
 
-This MUST provide an aggregation over the entire ‘event’ or ‘festival’ period of the number of tags scanned.
+This MUST provide an aggregation over the entire ‘event’ or ‘festival’ period of the number of tags scanned.  **DONE**
 
-And if development time permits, SHOULD be able to provide the above on a sliding time window basis (i.e. the total number of tags scanned within the last x minutes from  the time of the query) AND provide this function on a zone (tag reader) by zone basis.
-The above to be co-located with the FEP.
+
+And if development time permits, SHOULD be able to provide the above on a sliding time window basis (i.e. the total number of tags scanned within the last x minutes from  the time of the query) **DONE**
+
+
+AND provide this function on a zone (tag reader) by zone basis.
+
+The above to be co-located with the FEP.  **DONE**
+
+
  
 That a reduced form of aggregator should be co-located with each tag reader and provide an output to indicate that a tag has been scanned.  There should be considerable code re-use between this function and the more fully functioned aggregator described above.
 
