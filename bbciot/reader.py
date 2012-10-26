@@ -2,17 +2,18 @@
 Code related to a reader profile
 """
 import json
-from Kamaelia.Util.Backplane import *
-from Kamaelia.Chassis.Pipeline import Pipeline
-from Kamaelia.Chassis.PAR import PAR
+
 from bbciot.core import FestivalTagReader
 from bbciot.core import Logger
-from Kamaelia.Chassis.ConnectedServer import FastRestartServer
-from Kamaelia.Util.Console import ConsoleEchoer
-from Kamaelia.Util.PureTransformer import PureTransformer
-from Kamaelia.Internet.TCPClient import TCPClient
 from bbciot.analysis import TagStreamEvent
 from bbciot.actuator import Actuator
+from Kamaelia.Chassis.ConnectedServer import FastRestartServer
+from Kamaelia.Chassis.Pipeline import Pipeline
+from Kamaelia.Chassis.PAR import PAR
+from Kamaelia.Internet.TCPClient import TCPClient
+from Kamaelia.Util.Backplane import *
+from Kamaelia.Util.Console import ConsoleEchoer
+from Kamaelia.Util.PureTransformer import PureTransformer
 
 def DebugTapProtocol(**args):
     return SubscribeTo("TAGS")
@@ -53,8 +54,6 @@ def TagReaderClient(collator_ip="127.0.0.1",
                     PureTransformer(lambda x: json.loads(x) ), # Restore record
                     TagStreamEvent(temporal_separation=0.5),   # Extract tag taps
                     Actuator()
-#                    PureTransformer(lambda x: repr(x)+"\n"),   # In place of actuator
-#                    ConsoleEchoer()               # In place of actuator
                 ),
 
                 # For debugging purposes
