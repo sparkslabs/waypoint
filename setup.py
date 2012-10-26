@@ -38,6 +38,11 @@ setup(name = "bbciot",
       package_dir = packages,
       scripts = [
                   'scripts/bbciotservice',
+                  'scripts/bbciot_aggregate_analyser',
+                  'scripts/bbciot_collator',
+                  'scripts/bbciot_reader',
+                  'scripts/bbciotservice',
+                  'scripts/bbciot.mkdirs',
                 ],
       data_files=[
                    ('/etc/init',         ['etc/init/bbciotservice.conf']),

@@ -39,6 +39,17 @@ Short log
 
     * Analyser can also run on a last X seconds basis now, in a timely fashion
 
+    * Updated docs with current status
+    * Packaging updates
+    * minor updates to setup.py
+    * Added local actuation tag stream trigger
+    * Instrumented (but commented out) system delays
+    * Implementation and integration of actuator code
+    * Small code tidy
+
+    * Now suitable for running as a standalone logging tag reader/actuator for offline analysis
+
+    * Basic packaging updates
 
 
 Data formats:

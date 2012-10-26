@@ -2,6 +2,6 @@
 
 # This could be performed by the postinst script really
 
-mkdir /var/run/bbciotservice
+mkdir -p /var/run/bbciotservice
 chmod a+rwx /var/run/bbciotservice
 
