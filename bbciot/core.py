@@ -19,6 +19,7 @@ class TagReader(Axon.ThreadedComponent.threadedcomponent):
             num = rfidtag_seek()
             if num == 1:
                 tag =  rfidtag_getID1() 
+                # print "TAG",time.time(), tag
                 self.send(tag, "outbox")
             time.sleep(self.delay)
         rfidtag_close()

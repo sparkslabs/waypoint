@@ -148,17 +148,18 @@ class TagStreamEvent(Axon.Component.component):
             while True:
                 for noderec in self.Inbox():
                     timestamp, tagid, nodeid = noderec
+                    # print "ANALYSIS", time.time(), noderec
                     if lastid != nodeid:
                         lastid = nodeid
-                        print
-                        print "NEW TAG SEEN - GO PING"
-                        print
+                        # print
+                        # print "NEW TAG SEEN - GO PING"
+                        # print
                         self.send(noderec, "outbox")
                     elif (timestamp - lastevent_time) > min_delta:
                         self.send(noderec, "outbox")
-                        print
-                        print "SAME TAG SEEN - GO PING"
-                        print
+                        # print
+                        # print "SAME TAG SEEN - GO PING"
+                        # print
                     lastevent_time = timestamp
 
                 if self.dataReady("control"):
