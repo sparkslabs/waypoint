@@ -12,6 +12,7 @@ from Kamaelia.Util.Console import ConsoleEchoer
 from Kamaelia.Util.PureTransformer import PureTransformer
 from Kamaelia.Internet.TCPClient import TCPClient
 from bbciot.analysis import TagStreamEvent
+from bbciot.actuator import Actuator
 
 def DebugTapProtocol(**args):
     return SubscribeTo("TAGS")
@@ -50,10 +51,10 @@ def TagReaderClient(collator_ip="127.0.0.1",
                     SubscribeTo("TAGS"),
                     PureTransformer(lambda x: x[:-1]),         # Strip trailing /n
                     PureTransformer(lambda x: json.loads(x) ), # Restore record
-                    TagStreamEvent(),                          # Extract tag taps
-
-                    PureTransformer(lambda x: repr(x)+"\n"),   # In place of actuator
-                    ConsoleEchoer()               # In place of actuator
+                    TagStreamEvent(temporal_separation=0.5),   # Extract tag taps
+                    Actuator()
+#                    PureTransformer(lambda x: repr(x)+"\n"),   # In place of actuator
+#                    ConsoleEchoer()               # In place of actuator
                 ),
 
                 # For debugging purposes
