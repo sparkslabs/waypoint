@@ -1,0 +1,98 @@
+Done
+====
+
+Short log
+    * First checkin, mirror of sketches base+20min hack
+    * Renamed hack, moved into scripts.
+    * Changed packaging template of pyexample to bbciot throughout
+    * Debian packaging cleanup
+    * Added some explanatory notes/aspirations to the README.md file
+    * Added the todo/done files. Done pre-populated with contents of git shortlog
+    * First extractions of hack into package
+    * For tracking issues as they arise
+    * Extracted reader code out to bbciot.reader.py
+    * ignore generated files
+    * Extracted collator code to bbciot.collator.py
+    * Split single reader/fep: 2 scripts reader/collator
+    * Reversed direction of clients/servers
+    * Maintenance & startup changes - no longer auto start the systems - allowing integration with other things. (eg allows the FEP and tag reader code to be co-located inside the same process)
+    * node_id is configurable at top level
+    * Top level task "1. Implement Tag Reading Module" is complete
+    * Top level task "2. FEP/Aggregator software" is complete
+    * bbciot.core.Logger component created.
+    * Logfile is configurable for TagReader
+    * Logfile is configurable for Collator
+    * Logfile for both now defaults to appending & flushing
+    * Collator explicitly configures logfile and ports
+    * TagReader explicitly configures all parameters
+    * Collator logs conninfo, time and node record
+    * Script to create run/logging directory - for development
+       * Production would use the debian script
+    * Top Level task "14. Implement local logging for TagReaders" is complete
+    * Top Level task "4. Define Actuator Behaviour" is complete
+
+    * Basic aggregate analysis component implemented.
+        - Run as bbciot_aggregate_analyser
+        - Outputs the set of tag ids seen over all time (for the given log file)
+        - has a second mode which can cause it to drive an actuator
+        - The actuator component is currently a stub and receive a PING message
+
+    * Analyser can also run on a last X seconds basis now, in a timely fashion
+
+    * Updated docs with current status
+    * Packaging updates
+    * minor updates to setup.py
+    * Added local actuation tag stream trigger
+    * Instrumented (but commented out) system delays
+    * Implementation and integration of actuator code
+    * Small code tidy
+
+    * Now suitable for running as a standalone logging tag reader/actuator for offline analysis
+
+    * Basic packaging updates
+
+
+Data formats:
+    * TagReader outputs records of form [timestamp, tagid, nodeid]
+        * Timestamp is a float of seconds since the start of the 1970 unix epoch
+            - This timestamp is the time of reading on the reader
+        * tagid is a base 10 representation of the RFID tag id
+        * nodeid is a passed through nodeid as configured by the tag reader (should be a string)
+
+    * Collator (FEP) outputs log file of records of form:
+        * [ conninfo, timestamp, noderecord]
+            * conninfo is an object with following keys:
+                localip - string - IP address
+                localport - integer - port  number
+                peer - string - IP address
+                peerport - integer - port  number
+            * timestamp is a float of seconds since the start of the 1970 unix epoch
+                - This is the time on the collator at time of reception
+            * noderecord is an unmodified record from tagreader
+
+    * Actuator behaviour is to send a "ping" message to an outbox
+
+            
+Task log related complete:
+
+  * 1. Implement Tag Reading Module
+    Output: ( time, tag id, node id) (as JSON object)
+
+  * 2. FEP / Aggregator software
+    Could be a server or client, depending on whether nodes - tag raders - are clients or servers. TBD.
+    Output: Data archive or log file of activity from tags on nodes
+
+   * 14. Implement local logging for TagReaders
+
+   * 4. Define Actuator Behaviour
+        When the actuator analyser has analysed the data, it will cause
+        the actuator to do something. A decision needs to be taken about
+        what actuator is chosen and what the required behaviour should be.
+
+   * 5 Implement Actuator analyser
+        An analyser takes logged events from the data archive, processes
+        them and triggers the actuator to do something.
+
+        This is essentially an overall analyser which performs aggregate
+        analysis. (eg total number of tag taps)
+

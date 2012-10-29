@@ -1,0 +1,55 @@
+#!/usr/bin/python
+
+import sys
+from bbciot.analysis import AllTimeAggregateAnalyser, RecentEventsAnalyser
+from Kamaelia.Chassis.Pipeline import Pipeline
+from Kamaelia.Util.Console import ConsoleEchoer
+from Kamaelia.Util.PureTransformer import PureTransformer
+
+
+ActuatorStub = Pipeline(
+                    PureTransformer(lambda x : "actuate!" + repr(x) + "\n"),
+                    ConsoleEchoer()
+               )
+
+if __name__ == "__main__":
+    import sys
+
+    RecentEventsAnalyser
+    print sys.argv
+    if len(sys.argv) >1:
+
+        if sys.argv[1] == "ALL":
+            analysis = AllTimeAggregateAnalyser
+        else:
+            analysis = RecentEventsAnalyser
+
+
+        from Kamaelia.Util.Backplane import *
+        Backplane("TAGEVENTS").activate()
+        
+        Pipeline(
+            analysis("/var/run/bbciotservice/collated_tag_events.log"),
+            PublishTo("TAGEVENTS")
+        ).activate()
+
+        Pipeline(
+            SubscribeTo("TAGEVENTS"),
+            PureTransformer(lambda _: "PING"),
+            ActuatorStub
+        ).activate()
+
+        Pipeline(
+            SubscribeTo("TAGEVENTS"),
+            PureTransformer(lambda x: repr(x) + "\n"),
+            ConsoleEchoer()
+        ).run()
+
+    else:
+        
+        Pipeline(
+            AllTimeAggregateAnalyser("/var/run/bbciotservice/collated_tag_events.log"),
+            PureTransformer(lambda x: repr(x) + "\n"),
+            ConsoleEchoer()
+        ).run()
+

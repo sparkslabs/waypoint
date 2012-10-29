@@ -1,0 +1,104 @@
+Todo
+====
+
+These are *roughly* in desired order.
+
+3. Hardware set up for multiple tag readers
+
+5.5 Implement a means for a node to "come up" as a tag reader, as the
+    collator or as both.
+
+5. Implement actuator analyser
+
+An analyser takes logged events from the data archive, processes them and triggers the actuator to do something.
+
+This is essentially an overall analyser which performs aggregate analysis. (eg total number of tag taps)  **DONE**
+
+Agreed that for the overall project:
+
+We need an aggregation function to be implemented.  **DONE**
+
+This MUST provide an aggregation over the entire ‘event’ or ‘festival’ period of the number of tags scanned.  **DONE**
+
+
+And if development time permits, SHOULD be able to provide the above on a sliding time window basis (i.e. the total number of tags scanned within the last x minutes from  the time of the query) **DONE**
+
+
+AND provide this function on a zone (tag reader) by zone basis.
+
+The above to be co-located with the FEP.  **DONE**
+
+
+ 
+That a reduced form of aggregator should be co-located with each tag reader and provide an output to indicate that a tag has been scanned.  There should be considerable code re-use between this function and the more fully functioned aggregator described above.
+
+To develop the system as demonstrated into a standalone tag reader solution in which each tag reader is able to gather local activity data, drive an actuator for user feedback but that these are not integrated thereby forcing any aggregation or post event analysis to be performed off line.
+
+6. Implement initial participant analyser/front end
+
+An analyser will take log events, process them, put them into a DB, which a GUI front end (likely a web front end) can query to present activity by a specific tag id.
+This is essentially an aggregator for a particular tag id presented as a sequence.
+
+Depends: Task 2
+
+Depended on by: Task 8, Task 9, Task 10
+
+7. Implement system view analyser/viewer
+
+Analyser takes log events, processes them on a node basis, to give a view of popularity of a node at given instants in time. This can & should be visualised.
+
+Depends: Task 2
+
+Depended on by: NA
+
+8. Media associated with Participant View
+
+The activity of the user at the event will be matched up with a media/asset store related to the event. This activity will change the participant view to reflect a visualisation of the events they visited (in terms of audio, video, and other content - initially linked to, perhaps embedded). The result of this will be a user interface that is minimalistic and suitable for a designer to be let loose on.
+
+Depends: Task 6
+
+Depended on by: NA
+
+
+9. Internal Tag ID related to Participant ID
+
+User IDs in the Participant view at this point will be just a tag id (with no password), which may either be numeric, hex or a prettier id.
+
+This task will:
+
+* Associate an internal username & password to the tag
+* Allow the user to associate an external id to their account
+
+At minimum the external id should be an email.
+A *very much preferred* minimal extension to this would be to support web based external ids, such as open id. 
+
+Depends: Task 6
+
+Depended on by: 10
+
+10. Participant can edit/share journey with others
+
+The view presented to the user at this point will be authenticated, display all the activities they attended, and include links to media (if not embedded media).
+For the sake of this task, I'll call this a trail. Result of this task:
+
+* The participant should be able to share trails with others.
+* The participant should be able to (at minimum) remove items from their trail before (or after) sharing.
+* Optional: The participant should be able to delete or revoke shares.
+
+Depends: Task 6, Task 8, Task 9
+
+Depended on by: NA
+
+
+11. Toolset extraction & Packaging
+
+12. Toolset documentation
+
+13. Toolset overview docs & dissemination
+
+
+
+
+
+
+

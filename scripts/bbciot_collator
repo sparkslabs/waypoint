@@ -1,0 +1,7 @@
+#!/usr/bin/python
+
+from bbciot.collator import Collator
+
+Collator(listenport=1600,
+         logfile="/var/run/bbciotservice/collated_tag_events.log"
+        ).run()

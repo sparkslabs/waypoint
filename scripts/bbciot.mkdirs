@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# This could be performed by the postinst script really
+
+mkdir -p /var/run/bbciotservice
+chmod a+rwx /var/run/bbciotservice
+
