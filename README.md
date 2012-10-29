@@ -1,5 +1,7 @@
-BBC IOT
+Waypoint
 ========
+
+A toolset for recording trails between waypoints by tagging tags against readers.
 
 This is a package that is aimed at getting a codebase suitable for
 running a basic IOT enhanced event.
