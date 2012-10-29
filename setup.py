@@ -26,30 +26,30 @@ def find_packages(path, base="" ):
 packages = find_packages(".")
 package_names = packages.keys()
 
-setup(name = "bbciot",
-      version = "1.0.0",
-      description = "bbciot",
+setup(name = "waypoint",
+      version = "0.1.0",
+      description = "waypoint",
      
       author = "Michael Sparks",
       author_email = "michael.sparks@bbc.co.uk",
-      url = "http://www.rd.bbc.co.uk/~michael/",
+      url = "http://www.bbc.co.uk/rd/",
       license ="Apache Software License",
       packages = package_names,
       package_dir = packages,
       scripts = [
-                  'scripts/bbciotservice',
-                  'scripts/bbciot_aggregate_analyser',
-                  'scripts/bbciot_collator',
-                  'scripts/bbciot_reader',
-                  'scripts/bbciotservice',
-                  'scripts/bbciot.mkdirs',
+                  'scripts/waypointservice',
+                  'scripts/waypoint_aggregate_analyser',
+                  'scripts/waypoint_collator',
+                  'scripts/waypoint_reader',
+                  'scripts/waypointservice',
+                  'scripts/waypoint.mkdirs',
                 ],
       data_files=[
-                   ('/etc/init',         ['etc/init/bbciotservice.conf']),
-                   ('/etc/bbciotservice', ["etc/bbciotservice/config.json"])
+                   ('/etc/init',         ['etc/init/waypointservice.conf']),
+                   ('/etc/waypointservice', ["etc/waypointservice/config.json"])
                  ],
 
       long_description = """
-Package for BBC IOT related code.
+Package for Waypoint related code.
       """
       )

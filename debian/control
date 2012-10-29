@@ -1,17 +1,17 @@
-Source: bbciot
+Source: waypoint
 Maintainer: Michael Sparks <michael.sparks@bbc.co.uk>
 Section: python
 Priority: optional
 Build-Depends: python-all (>= 2.6.6-3), debhelper (>= 7)
 Standards-Version: 3.9.3
 
-Package: python-bbciot
+Package: python-waypoint
 Architecture: all
 Depends: ${misc:Depends}, ${python:Depends}
-Description: bbciot
+Description: waypoint
  .
  This is initially just a collection of random test ideas. It may grow into
  something more interesting.  It may not.
  .
- This provides bbciot for ${python:Versions}
+ This provides waypoint for ${python:Versions}
  ${python:Provides}

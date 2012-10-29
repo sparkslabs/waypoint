@@ -1,5 +1,5 @@
 #DEBHELPER#
 
 echo "Removing user"
-deluser bbciotservice
+deluser waypointservice
 echo "done"

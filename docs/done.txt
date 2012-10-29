@@ -51,6 +51,10 @@ Short log
 
     * Basic packaging updates
 
+    * Copied onto github
+    * Renamed bbciot to waypoint
+
+
 
 Data formats:
     * TagReader outputs records of form [timestamp, tagid, nodeid]
