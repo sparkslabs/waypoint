@@ -1,11 +1,11 @@
 #!/usr/bin/python
 
-from bbciot.reader import TagReaderClient
+from waypoint.reader import TagReaderClient
 
 # All the arguments here should be externally configurable
 TagReaderClient(collator_ip = "127.0.0.1",
                 collator_port = 1600,
                 node_id=1,
-                logfile="/var/run/bbciotservice/tagsread.log",
+                logfile="/var/run/waypointservice/tagsread.log",
                 debug_port=1500).run()
 

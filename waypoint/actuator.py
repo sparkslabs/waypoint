@@ -1,5 +1,5 @@
 """
-This bridges the the bbciot codebase to the actator.
+This bridges the the waypoint codebase to the actator.
 Whenever the component receives a message it sends the character "71"
 over the serial port to the client.
 

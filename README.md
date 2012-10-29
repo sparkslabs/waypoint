@@ -12,7 +12,7 @@ And also derived from the 20 minute hack that works towards the same.
 The aim of this package is as follows:
     * You should have installed a working Ubuntu 12.04 box
     * You should be able to install this package
-    * You should be able to configure running profiles in /etc/bbciotservice
+    * You should be able to configure running profiles in /etc/waypointservice
         * Dependent on these profiles, when this box starts up it should
           start up a process that configures the process as tag reader node
           or as an collation node, or both.
@@ -59,17 +59,17 @@ If not enabled on the box, enable ssh.
 INSTALL
 =======
 
-Inside the bbciot tarball:
+Inside the waypoint tarball:
     sudo python setup.py install
 
 Then:
-    sudo bbciot.mkdirs
+    sudo waypoint.mkdirs
 
 RUNNING A STANDALONE READER
 ===========================
 
 The touchatad/tikitag readers require root privileges so must be run as follows:
-    sudo bbciot_reader
+    sudo waypoint_reader
 
 
 This will only work if a reader is plugged in. It furthermore currently has
@@ -77,7 +77,7 @@ a dependency on there also being an arduino plugged.
 
 Assuming the hardware is OK, this will log tagged data to:
 
-    * /var/run/bbciotservice/tagsread.log
+    * /var/run/waypointservice/tagsread.log
 
 The format of that file is "\n" delimited JSON array objects of format:
     * Timestamp (float value)
@@ -87,16 +87,16 @@ The format of that file is "\n" delimited JSON array objects of format:
 FIXME: Configuration of reader
 ------------------------------
 At present the reader ID is not configurable without modification of the
-code. In practice this means modifying /usr/local/bin/bbciot_reader in an obvious way. This will change PDQ. To give an idea of complexity of change,
+code. In practice this means modifying /usr/local/bin/waypoint_reader in an obvious way. This will change PDQ. To give an idea of complexity of change,
 the entiterty of that file is presented here:
 
-    from bbciot.reader import TagReaderClient
+    from waypoint.reader import TagReaderClient
 
     # All the arguments here should be externally configurable
     TagReaderClient(collator_ip = "127.0.0.1",
                     collator_port = 1600,
                     node_id=1,
-                    logfile="/var/run/bbciotservice/tagsread.log",
+                    logfile="/var/run/waypointservice/tagsread.log",
                     debug_port=1500).run()
 
 

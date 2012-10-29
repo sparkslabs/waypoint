@@ -1,5 +1,5 @@
 ===============
- bbciotservice
+waypointservice
 ===============
 
 ----------------------------------
@@ -8,7 +8,7 @@ manage bolster as a system service
 
 :Author: michael.sparks@bbc.co.uk
 :Date:   2012-10-24
-:Copyright: BBC, All Rights Reserved
+:Copyright: BBC, All Rights Reserved. (License: Apache Software License)
 :Version: 0.1
 :Manual section: 7
 :Manual group: System administration
@@ -18,7 +18,7 @@ manage bolster as a system service
 SYNOPSIS
 ========
 
-/etc/init.d/bbciotservice COMMAND
+/etc/init.d/waypointservice COMMAND
   
 Supported commands:
 
@@ -27,20 +27,20 @@ Supported commands:
 DESCRIPTION
 ===========
 
-bbciotservice stops and starts the BBC IOT service.
+waypointservice stops and starts the BBC IOT service.
 
 OPTIONS
 =======
 
 Supports the standard commands:
 
-* status        Is the bbciotservice running?
-* start         Start bbciotservice
-* stop          Stop bbciotservice
-* restart       Stop/Start bbciotservice
+* status        Is the waypointservice running?
+* start         Start waypointservice
+* stop          Stop waypointservice
+* restart       Stop/Start waypointservice
 * reload        Send a reload signal
 * force-reload  Send a force reload signal
-* help          Provide help on bbciotservice
+* help          Provide help on waypointservice
 
 SEE ALSO
 ========

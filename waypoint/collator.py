@@ -11,10 +11,10 @@ from Kamaelia.Chassis.Pipeline import Pipeline
 from Kamaelia.Chassis.PAR import PAR
 from Kamaelia.Internet.TCPClient import TCPClient
 from Kamaelia.Util.Console import ConsoleEchoer
-from bbciot.core import LineSplitter
+from waypoint.core import LineSplitter
 from Kamaelia.Util.PureTransformer import PureTransformer
 from Kamaelia.File.Writing import SimpleFileWriter
-from bbciot.core import Logger
+from waypoint.core import Logger
 
 from Kamaelia.Chassis.ConnectedServer import FastRestartServer
 

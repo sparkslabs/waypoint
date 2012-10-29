@@ -3,10 +3,10 @@ Code related to a reader profile
 """
 import json
 
-from bbciot.core import FestivalTagReader
-from bbciot.core import Logger
-from bbciot.analysis import TagStreamEvent
-from bbciot.actuator import Actuator
+from waypoint.core import FestivalTagReader
+from waypoint.core import Logger
+from waypoint.analysis import TagStreamEvent
+from waypoint.actuator import Actuator
 from Kamaelia.Chassis.ConnectedServer import FastRestartServer
 from Kamaelia.Chassis.Pipeline import Pipeline
 from Kamaelia.Chassis.PAR import PAR

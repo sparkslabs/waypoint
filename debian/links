@@ -1,2 +1,2 @@
-/lib/init/upstart-job /etc/init.d/bbciotservice
+/lib/init/upstart-job /etc/init.d/waypointservice
 

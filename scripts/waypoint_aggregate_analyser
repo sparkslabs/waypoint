@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 import sys
-from bbciot.analysis import AllTimeAggregateAnalyser, RecentEventsAnalyser
+from waypoint.analysis import AllTimeAggregateAnalyser, RecentEventsAnalyser
 from Kamaelia.Chassis.Pipeline import Pipeline
 from Kamaelia.Util.Console import ConsoleEchoer
 from Kamaelia.Util.PureTransformer import PureTransformer
@@ -29,7 +29,7 @@ if __name__ == "__main__":
         Backplane("TAGEVENTS").activate()
         
         Pipeline(
-            analysis("/var/run/bbciotservice/collated_tag_events.log"),
+            analysis("/var/run/waypointservice/collated_tag_events.log"),
             PublishTo("TAGEVENTS")
         ).activate()
 
@@ -48,7 +48,7 @@ if __name__ == "__main__":
     else:
         
         Pipeline(
-            AllTimeAggregateAnalyser("/var/run/bbciotservice/collated_tag_events.log"),
+            AllTimeAggregateAnalyser("/var/run/waypointservice/collated_tag_events.log"),
             PureTransformer(lambda x: repr(x) + "\n"),
             ConsoleEchoer()
         ).run()

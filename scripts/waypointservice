@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-from bbciot.service import main
+from waypoint.service import main
 
 main()
 
