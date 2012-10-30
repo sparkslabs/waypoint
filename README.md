@@ -52,10 +52,7 @@ python-rfidtag:
     cd cd python-rfidtag
     sudo python setup.py install
 
-To be nice to Michael when working on the box :
-    sudo apt-get install joe
-
-If not enabled on the box, enable ssh.
+If not enabled on the box, enable ssh - this simplifies managing an installation.
 
 
 INSTALL
