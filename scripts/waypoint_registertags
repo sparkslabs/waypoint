@@ -1,0 +1,44 @@
+#!/usr/bin/python
+
+from rfidtag import *
+import json
+import time
+
+rfidtag_init()
+rfidtag_config(5000,0)
+
+logfile = "tag_register.log"
+def logline(line):
+    try:
+        x = open(logfile,"a")
+    except IOError:
+        x = open(logfile,"w")
+    x.write(line+"\n")
+    x.flush()
+    x.close()
+
+expect_tag = 1
+lookup = []
+print "Now:", time.time(), time.asctime()
+print "Waiting for first tag"
+while True:
+    try:
+        num = rfidtag_seek()
+    except KeyboardInterrupt:
+        break
+    if num == 1:
+        tagid = rfidtag_getID1()
+
+        print "Read tag", tagid
+        print "Expect this tag's id to be:", expect_tag
+        x = raw_input("enter physical id> ")
+        if x.strip() == "":
+            x = str(expect_tag)
+            expect_tag +=1
+
+        logline(json.dumps([x, tagid]))
+        print "Waiting for next tag - exit by pressing control-c"
+
+rfidtag_close()
+
+print "Now:", time.time(), time.asctime()
