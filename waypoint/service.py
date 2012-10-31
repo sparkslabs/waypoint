@@ -5,11 +5,11 @@ import sys
 import json
 
 try:
-    config=json.load(open("/etc/pyexampleservice/config.json"))
+    config=json.load(open("/etc/waypointservice/config.json"))
 except IOError:
-    config=json.load(open("../etc/pyexampleservice/config.json"))
+    config=json.load(open("../etc/waypointservice/config.json"))
 
-logfile="/var/log/pyexampleservice/service.log"
+logfile="/var/log/waypointservice/service.log"
 start = time.time()
 count = 0
 
@@ -40,6 +40,6 @@ def main():
         time.sleep(5)
 
 if __name__ == "__main__":
-    logfile = "pyexample.service.log"
+    logfile = "waypoint.service.log"
     main()
 

@@ -53,7 +53,9 @@ Short log
 
     * Copied onto github
     * Renamed bbciot to waypoint
-
+    * Code tested on 3 machines with continual tag events over 3 days, with
+      no faults ~10 tag events per second meaning ~7million tag events
+      processed.
 
 
 Data formats:
