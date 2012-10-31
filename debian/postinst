@@ -3,3 +3,9 @@
 echo "Adding waypointservice user"
 sudo useradd waypointservice --system --no-create-home  --home-dir /nonexistent
 echo "done"
+sudo mkdir -p /var/run/waypointservice
+sudo chmod a+rwx /var/run/waypointservice
+sudo mkdir -p /var/log/waypointservice
+sudo chmod a+rwx /var/log/waypointservice
+sudo update-rc.d waypointservice defaults
+sudo service waypointservice start

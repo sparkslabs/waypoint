@@ -42,6 +42,7 @@ setup(name = "waypoint",
                   'scripts/waypoint_collator',
                   'scripts/waypoint_reader',
                   'scripts/waypointservice',
+                  'scripts/waypointservice.sh',
                   'scripts/waypoint.mkdirs',
                 ],
       data_files=[

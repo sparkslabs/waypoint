@@ -1,5 +1,9 @@
 #DEBHELPER#
 
+sudo service waypointservice stop
+sudo update-rc.d -f waypointservice remove 
 echo "Removing user"
 deluser waypointservice
 echo "done"
+
+sudo rm -rf /var/run/waypointservice/ /var/log/waypointservice /run/waypointservice/

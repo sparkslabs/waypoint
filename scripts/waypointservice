@@ -1,6 +1,22 @@
 #!/usr/bin/python
 
-from waypoint.service import main
+# from waypoint.service import main
+# 
+# main()
+import time
+try:
+    from waypoint.reader import TagReaderClient
 
-main()
+# All the arguments here should be externally configurable
 
+    TagReaderClient(collator_ip = "127.0.0.1",
+                   collator_port = 1600,
+                    node_id=1,
+                    logfile="/var/run/waypointservice/tagsread.log",
+                    debug_port=1500).run()
+except:
+   # died for some reason
+   # Entirely possible the reader isn't plugged in.
+   # If we sleep for a moment before restarting we'll be
+   # allowed to respawn again...
+   time.sleep(10)
