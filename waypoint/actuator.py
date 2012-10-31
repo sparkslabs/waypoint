@@ -14,7 +14,7 @@ from Kamaelia.Util.PureTransformer import PureTransformer
 
 class SerialSender(Axon.ThreadedComponent.threadedcomponent):
     """ Derived from kamaelia.git/Sketches/MPS/ArduinoRelated/ArdCube.py#SerialIO"""
-    serialports = ['/dev/ttyUSB0', '/dev/ttyUSB1', '/dev/ttyUSB2']
+    serialports = ['/dev/ttyUSB0', '/dev/ttyUSB1', '/dev/ttyUSB2', '/dev/ttyACM0', '/dev/ttyACM1', '/dev/ttyACM2']
     baudrate = 9600
     def main(self):  # FIXME: Shutdown for this component does not play nicely with others
 
@@ -23,6 +23,7 @@ class SerialSender(Axon.ThreadedComponent.threadedcomponent):
         while serialport is None:
             for port in self.serialports:
                 if os.path.exists(port):
+                    print "FOUND PORT", port
                     serialport = port
             if serialport is None:
                 # Throw away any messages sent while we're waiting for the serial port to exist...
@@ -30,7 +31,7 @@ class SerialSender(Axon.ThreadedComponent.threadedcomponent):
                     pass
             time.sleep(0.1)
 
-        ser = serial.Serial(self.serialport, self.baudrate)
+        ser = serial.Serial(serialport, self.baudrate)
         while True:
             for msg in self.Inbox("inbox"):
                 ser.write(str(msg))
@@ -41,3 +42,9 @@ def Actuator(char_to_send=chr(71)):
               PureTransformer(lambda x: char_to_send),
               SerialSender()
            )
+
+if __name__ == "__main__":
+     pass
+#    SerialSender().run()
+
+
