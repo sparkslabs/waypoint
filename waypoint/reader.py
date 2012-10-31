@@ -38,10 +38,10 @@ def TagReaderClient(collator_ip="127.0.0.1",
                 FastRestartServer(protocol=DebugTapProtocol, port=debug_port),
 
                 # Connect to Collator
-                Pipeline(
-                    SubscribeTo("TAGS"),
-                    TCPClient(collator_ip,collator_port)
-                ),
+#                Pipeline(
+#                    SubscribeTo("TAGS"),
+#                    TCPClient(collator_ip,collator_port)
+#                ),
                 Pipeline(
                     SubscribeTo("TAGS"),
                     PureTransformer(lambda x: x[:-1]), # Strip trailing /n
