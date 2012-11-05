@@ -27,7 +27,7 @@ packages = find_packages(".")
 package_names = packages.keys()
 
 setup(name = "waypoint",
-      version = "0.1.0",
+      version = "0.2.0",
       description = "waypoint",
      
       author = "Michael Sparks",

@@ -8,6 +8,9 @@ import time
 from Kamaelia.Chassis.Pipeline import Pipeline
 from Kamaelia.Util.PureTransformer import PureTransformer
 import json
+import os
+
+system_nodeid = os.popen("hostname").read().strip()
 
 class TagReader(Axon.ThreadedComponent.threadedcomponent):
     delay = 0.01
@@ -30,7 +33,7 @@ class TagReader(Axon.ThreadedComponent.threadedcomponent):
 def FestivalTagReader(nodeid):
     return Pipeline( 
                      TagReader(),
-                     PureTransformer(lambda tagid: [time.time(), tagid, nodeid]),
+                     PureTransformer(lambda tagid: [time.time(), tagid, [nodeid,system_nodeid]]),
                      PureTransformer(lambda x: json.dumps(x)+"\n") # CHANGE: Added \n
                    )
 

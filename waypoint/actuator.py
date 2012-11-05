@@ -11,6 +11,7 @@ import os
 import serial
 from Kamaelia.Chassis.Pipeline import Pipeline
 from Kamaelia.Util.PureTransformer import PureTransformer
+import waypoint.core
 
 class SerialSender(Axon.ThreadedComponent.threadedcomponent):
     """ Derived from kamaelia.git/Sketches/MPS/ArduinoRelated/ArdCube.py#SerialIO"""
@@ -20,6 +21,7 @@ class SerialSender(Axon.ThreadedComponent.threadedcomponent):
 
         # Wait for one of the serial ports to come online...
         serialport = None
+        havetag = False
         while serialport is None:
             for port in self.serialports:
                 if os.path.exists(port):
@@ -32,6 +34,14 @@ class SerialSender(Axon.ThreadedComponent.threadedcomponent):
             time.sleep(0.1)
 
         ser = serial.Serial(serialport, self.baudrate)
+        serialinput = ""
+        while not havetag:
+            
+             serialinput += ser.read()
+             if "\n" in serialinput:
+                 waypoint.core.system_nodeid = serialinput.strip()
+                 havetag = True
+
         while True:
             for msg in self.Inbox("inbox"):
                 ser.write(str(msg))
