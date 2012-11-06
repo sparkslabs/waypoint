@@ -6,11 +6,6 @@ A toolset for recording trails between waypoints by tagging tags against readers
 This is a package that is aimed at getting a codebase suitable for
 running a basic IOT enhanced event.
 
-It is derived from the sparkslabs/sketches package here:
-    https://github.com/sparkslabs/sketches
-    
-And also derived from the 20 minute hack that works towards the same.
-
 The aim of this package is as follows:
     * You should have installed a working Ubuntu 12.04 box
     * You should be able to install this package
@@ -21,10 +16,10 @@ The aim of this package is as follows:
         * This should be able to happen without human interaction - except
           for initial configuration
 
-This is not going to happen overnight, so the aim will be to have as usable
-a system at each stage as fast as possible.
+Currently the package does most of these points, except for configuration.
+Installation of the debian package for this codebase will result in a waypointservice
+that starts up at boot, and allows for plug and play with both readers and actuators.
 
-This package currently represents about a days' work in total
 
 DEPENDENCIES / Installation thereof
 ===================================
@@ -58,12 +53,18 @@ If not enabled on the box, enable ssh - this simplifies managing an installation
 INSTALL
 =======
 
+The preferred installation approach is to install the dependencies and then install the debian package.
+
+Manual installation
+-------------------
+
 Inside the waypoint tarball:
     sudo python setup.py install
 
 Then:
     sudo waypoint.mkdirs
 
+    
 RUNNING A STANDALONE READER
 ===========================
 
@@ -83,11 +84,11 @@ The format of that file is "\n" delimited JSON array objects of format:
     * tag id as a decimal integer value
     * Defined reader id
 
-FIXME: Configuration of reader
-------------------------------
+Configuration of reader
+-----------------------
 At present the reader ID is not configurable without modification of the
-code. In practice this means modifying /usr/local/bin/waypoint_reader in an obvious way. This will change PDQ. To give an idea of complexity of change,
-the entiterty of that file is presented here:
+code. In practice this means modifying /usr/[local/]bin/waypoint_reader in a hopefully obvious way. This will change shortly. To give an idea of complexity of change,
+the entirety of that file is presented here:
 
     from waypoint.reader import TagReaderClient
 
@@ -99,16 +100,7 @@ the entiterty of that file is presented here:
                     debug_port=1500).run()
 
 
-It should be obvious where and how this would need changing. This is
-as I say however less than ideal
-
-
-TBD:
-
-Installation as a collator / etc (see docs/todo.txt)
-
-
-
+It should be obvious from the above and how this would need changing.
 
 
 Michael
