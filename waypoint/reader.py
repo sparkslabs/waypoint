@@ -18,17 +18,30 @@ from Kamaelia.Util.PureTransformer import PureTransformer
 def DebugTapProtocol(**args):
     return SubscribeTo("TAGS")
 
+def ActuatorTriggerProtocol(**args):
+    return PublishTo("ACTUATE")
+
+def ActuatorTriggerTapProtocol(**args):
+    return Pipeline(
+        SubscribeTo("ACTUATE"),
+        PureTransformer(lambda x: json.dumps(x) + "\n")
+        )
+
+
 def TagReaderClient(collator_ip="127.0.0.1",
                     collator_port=1600,
                     node_id=1,
                     logfile="tagsread.log",
-                    debug_port=1500):
+                    debug_port=1500,
+                    actuator_port=1600,
+                    actuator_tap_port=1700):
 
     # Use the PAR component to allow deferred activation, and to allow the components
     # to be used as a unit.
 
     return PAR(
                 Backplane("TAGS"),
+                Backplane("ACTUATE"),
 
                 Pipeline(
                     FestivalTagReader(node_id),   # FIXME: Probably don't want json encoding in here
@@ -36,6 +49,8 @@ def TagReaderClient(collator_ip="127.0.0.1",
                 ),
 
                 FastRestartServer(protocol=DebugTapProtocol, port=debug_port),
+                FastRestartServer(protocol=ActuatorTriggerProtocol, port=actuator_port),
+                FastRestartServer(protocol=ActuatorTriggerTapProtocol, port=actuator_tap_port),
 
                 # Connect to Collator
 #                Pipeline(
@@ -53,6 +68,11 @@ def TagReaderClient(collator_ip="127.0.0.1",
                     PureTransformer(lambda x: x[:-1]),         # Strip trailing /n
                     PureTransformer(lambda x: json.loads(x) ), # Restore record
                     TagStreamEvent(temporal_separation=0.5),   # Extract tag taps
+                    PublishTo("ACTUATE"),
+                ),
+
+                Pipeline(
+                    SubscribeTo("ACTUATE"),
                     Actuator()
                 ),
 

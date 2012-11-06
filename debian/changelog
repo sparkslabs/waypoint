@@ -1,3 +1,11 @@
+waypoint (0.2.1) UNRELEASED; urgency=low
+
+  * Minor Change - allows actuator to be tapped and triggered remotely. Enables
+    the device as a true internet thing - with events on one device able to
+    trigger another device.
+
+ -- Michael Sparks <michael.sparks@bbc.co.uk>  Mon, 5 Nov 2012 12:55:00 +0000
+
 waypoint (0.2.0) UNRELEASED; urgency=low
 
   * Various improvements, including autoconfiguration based on actuators

@@ -27,7 +27,7 @@ packages = find_packages(".")
 package_names = packages.keys()
 
 setup(name = "waypoint",
-      version = "0.2.0",
+      version = "0.2.1",
       description = "waypoint",
      
       author = "Michael Sparks",
@@ -44,6 +44,7 @@ setup(name = "waypoint",
                   'scripts/waypointservice',
                   'scripts/waypointservice.sh',
                   'scripts/waypoint.mkdirs',
+                  "scripts/waypoint_registertags",
                 ],
       data_files=[
                    ('/etc/init',         ['etc/init/waypointservice.conf']),

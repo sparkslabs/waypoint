@@ -11,6 +11,8 @@ import os
 import serial
 from Kamaelia.Chassis.Pipeline import Pipeline
 from Kamaelia.Util.PureTransformer import PureTransformer
+from Kamaelia.Util.Console import ConsoleEchoer
+
 import waypoint.core
 
 class SerialSender(Axon.ThreadedComponent.threadedcomponent):
@@ -50,6 +52,7 @@ class SerialSender(Axon.ThreadedComponent.threadedcomponent):
 def Actuator(char_to_send=chr(71)):
     return Pipeline(
               PureTransformer(lambda x: char_to_send),
+#              ConsoleEchoer(),
               SerialSender()
            )
 
