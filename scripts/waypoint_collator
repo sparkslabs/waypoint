@@ -3,5 +3,5 @@
 from waypoint.collator import Collator
 
 Collator(listenport=1600,
-         logfile="/var/run/waypointservice/collated_tag_events.log"
+         logfile="/var/log/waypointservice/collated_tag_events.log"
         ).run()

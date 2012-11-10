@@ -53,7 +53,8 @@ If not enabled on the box, enable ssh - this simplifies managing an installation
 INSTALL
 =======
 
-The preferred installation approach is to install the dependencies and then install the debian package.
+The preferred installation approach is to install the dependencies and
+then install the debian package.
 
 Manual installation
 -------------------
@@ -77,7 +78,7 @@ a dependency on there also being an arduino plugged.
 
 Assuming the hardware is OK, this will log tagged data to:
 
-    * /var/run/waypointservice/tagsread.log
+    * /var/log/waypointservice/tagsread.log
 
 The format of that file is "\n" delimited JSON array objects of format:
     * Timestamp (float value)
@@ -87,8 +88,9 @@ The format of that file is "\n" delimited JSON array objects of format:
 Configuration of reader
 -----------------------
 At present the reader ID is not configurable without modification of the
-code. In practice this means modifying /usr/[local/]bin/waypoint_reader in a hopefully obvious way. This will change shortly. To give an idea of complexity of change,
-the entirety of that file is presented here:
+code. In practice this means modifying /usr/[local/]bin/waypoint_reader
+in a hopefully obvious way. This will change shortly. To give an idea of
+complexity of change, the entirety of that file is presented here:
 
     from waypoint.reader import TagReaderClient
 
@@ -96,11 +98,16 @@ the entirety of that file is presented here:
     TagReaderClient(collator_ip = "127.0.0.1",
                     collator_port = 1600,
                     node_id=1,
-                    logfile="/var/run/waypointservice/tagsread.log",
+                    logfile="/var/log/waypointservice/tagsread.log",
                     debug_port=1500).run()
 
 
 It should be obvious from the above and how this would need changing.
+
+TBD:
+    
+Installation as a collator / etc (see docs/todo.txt)
+
 
 
 Michael

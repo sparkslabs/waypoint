@@ -29,7 +29,7 @@ if __name__ == "__main__":
         Backplane("TAGEVENTS").activate()
         
         Pipeline(
-            analysis("/var/run/waypointservice/collated_tag_events.log"),
+            analysis("/var/log/waypointservice/collated_tag_events.log"),
             PublishTo("TAGEVENTS")
         ).activate()
 
@@ -48,7 +48,7 @@ if __name__ == "__main__":
     else:
         
         Pipeline(
-            AllTimeAggregateAnalyser("/var/run/waypointservice/collated_tag_events.log"),
+            AllTimeAggregateAnalyser("/var/log/waypointservice/collated_tag_events.log"),
             PureTransformer(lambda x: repr(x) + "\n"),
             ConsoleEchoer()
         ).run()

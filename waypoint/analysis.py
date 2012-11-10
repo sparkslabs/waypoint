@@ -31,7 +31,7 @@ def slurp(filename):
     return contents
 
 class FileWatcher(Axon.ThreadedComponent.threadedcomponent):
-    watchfile = "/var/run/waypointservice/collated_tag_events.log"
+    watchfile = "/var/log/waypointservice/collated_tag_events.log"
     def main(self):
         lastchange = 0
         while True:
@@ -45,7 +45,7 @@ class GotShutdownMessage(Exception):
 
 
 class FileSlurper(Axon.ThreadedComponent.threadedcomponent):
-    slurpfile = "/var/run/waypointservice/collated_tag_events.log"
+    slurpfile = "/var/log/waypointservice/collated_tag_events.log"
     def main(self):
         while True:
             for _ in self.Inbox("inbox"):
