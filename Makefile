@@ -1,6 +1,7 @@
 PYTHON=`which python`
 DESTDIR=/
 PROJECT=waypoint
+VERSION=0.2.4
 
 all:
 	@echo "make source - Create source package"

@@ -1,4 +1,22 @@
-waypoint (0.2.1) UNRELEASED; urgency=low
+waypoint (0.2.4) trusty; urgency=low
+
+  * Fix dependencies, in the right place this time
+
+ -- Michael Sparks (sparkslabs) <sparks.m@gmail.com>  Sun, 1 Mar 2015 15:10:00 +0000
+
+waypoint (0.2.3) trusty; urgency=low
+
+  * Fix dependencies
+
+ -- Michael Sparks (sparkslabs) <sparks.m@gmail.com>  Sun, 1 Mar 2015 15:10:00 +0000
+
+waypoint (0.2.2) trusty; urgency=low
+
+  * Debian packaging for sparkslabs PPA.
+
+ -- Michael Sparks (sparkslabs) <sparks.m@gmail.com>  Sun, 1 Mar 2015 15:10:00 +0000
+
+waypoint (0.2.1) trusty; urgency=low
 
   * Minor Change - allows actuator to be tapped and triggered remotely. Enables
     the device as a true internet thing - with events on one device able to

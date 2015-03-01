@@ -1,5 +1,5 @@
 Source: waypoint
-Maintainer: Michael Sparks <michael.sparks@bbc.co.uk>
+Maintainer: Michael Sparks (sparkslabs) <sparks.m@gmail.com>
 Section: python
 Priority: optional
 Build-Depends: python-all (>= 2.6.6-3), debhelper (>= 7)
@@ -7,7 +7,7 @@ Standards-Version: 3.9.3
 
 Package: python-waypoint
 Architecture: all
-Depends: ${misc:Depends}, ${python:Depends}
+Depends: ${misc:Depends}, ${python:Depends}, python-rfidtag, python-kamaelia
 Description: waypoint
  .
  This is initially just a collection of random test ideas. It may grow into

@@ -27,11 +27,11 @@ packages = find_packages(".")
 package_names = packages.keys()
 
 setup(name = "waypoint",
-      version = "0.2.1",
+      version = "0.2.4",
       description = "waypoint",
      
-      author = "Michael Sparks",
-      author_email = "michael.sparks@bbc.co.uk",
+      author = "Michael Sparks (sparkslabs)",
+      author_email = "sparks.m@gmail.com",
       url = "http://www.bbc.co.uk/rd/",
       license ="Apache Software License",
       packages = package_names,
