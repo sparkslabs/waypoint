@@ -15,6 +15,7 @@ from Kamaelia.Util.Console import ConsoleEchoer
 
 import waypoint.core
 
+
 class SerialSender(Axon.ThreadedComponent.threadedcomponent):
     """ Derived from kamaelia.git/Sketches/MPS/ArduinoRelated/ArdCube.py#SerialIO"""
     serialports = ['/dev/ttyUSB0', '/dev/ttyUSB1', '/dev/ttyUSB2', '/dev/ttyACM0', '/dev/ttyACM1', '/dev/ttyACM2']
@@ -49,12 +50,20 @@ class SerialSender(Axon.ThreadedComponent.threadedcomponent):
                 ser.write(str(msg))
             time.sleep(0.01)
 
+
 def Actuator(char_to_send=chr(71)):
     return Pipeline(
               PureTransformer(lambda x: char_to_send),
-#              ConsoleEchoer(),
               SerialSender()
            )
+
+
+def DummyActuator(char_to_send=chr(71)):
+    return Pipeline(
+              PureTransformer(lambda x: char_to_send),
+              ConsoleEchoer()
+           )
+
 
 if __name__ == "__main__":
      pass

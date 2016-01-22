@@ -1,0 +1,43 @@
+#!/usr/bin/python
+
+
+# Schedule Authoring format is a spreadsheet.
+
+wiki_format = """
+| =Time\Place | =Enchanted Things | =Made At Home | =Tiny Theatre | =Extras |
+| =13:30      | [[WhereDial|{{ http://www.playfulinternet.co.uk/files/ET1.jpg }}]] | \
+                [[ShoutyGossipyThings|{{ http://www.playfulinternet.co.uk/files/MH1.jpg }}]] |
+                [[DesignOfAnIOTProtocol|{{ http://www.playfulinternet.co.uk/files/TT1.jpg }}]] |
+                [[InternetInSpace|{{ http://www.playfulinternet.co.uk/files/EX1.jpg }}]] |
+
+
+| =14:00      | [[SmartIntelligentHouse|{{ http://www.playfulinternet.co.uk/files/ET2.jpg }}]] |
+                [[EmotionallyAdaptiveEnvironments|{{ http://www.playfulinternet.co.uk/files/MH2.jpg }}]] |
+                [[PaperElectronics|{{ http://www.playfulinternet.co.uk/files/TT2.jpg }}]] |
+                [[PaperElectronics|{{ http://www.playfulinternet.co.uk/files/TT2.jpg }}]] |
+                [[PlayfulIOTForLearning|{{ http://www.playfulinternet.co.uk/files/EX2.jpg }}]] |
+
+
+| =14:30      | [[PlayfulRealimeCommunicationWebRTC|{{ http://www.playfulinternet.co.uk/files/ET3.jpg }}]] |
+                [[ShrimpingIT|{{ http://www.playfulinternet.co.uk/files/MH3.jpg }}]] |
+                [[SocialTV|{{ http://www.playfulinternet.co.uk/files/TT3.jpg }}]] |
+                [[WalkshopNetworkMeetsWorld|{{ http://www.playfulinternet.co.uk/files/EX3.jpg }}]] |
+
+
+| =15:00      | [[PlayfulPointOfSale|{{ http://www.playfulinternet.co.uk/files/ET4.jpg }}]] |
+                [[Aestheticodes|{{ http://www.playfulinternet.co.uk/files/MH4.jpg }}]] |
+                [[Phidgets|{{ http://www.playfulinternet.co.uk/files/TT4.jpg }}]] |
+                [[BBCAggregatesCollabInnov|{{ http://www.playfulinternet.co.uk/files/EX4.jpg }}]] |
+
+
+| =15:30      | [[InteractiveArt|{{ http://www.playfulinternet.co.uk/files/ET5.jpg }}]] |
+                [[BroadcastingThoughToys|{{ http://www.playfulinternet.co.uk/files/MH5.jpg }}]] |
+                [[ConnectingRegionalMakerspaces|{{ http://www.playfulinternet.co.uk/files/TT5.jpg }}]] |
+                [[HowCanTechnologyInspire|{{ http://www.playfulinternet.co.uk/files/EX5.jpg }}]]|
+                
+| =16:00      | [[MakieMe|{{ http://www.playfulinternet.co.uk/files/ET6.jpg }}]] |
+                [[HowToMakeMoney|{{ http://www.playfulinternet.co.uk/files/MH6.jpg }}]] |
+                [[NetworkConnectedToys|{{ http://www.playfulinternet.co.uk/files/TT6.jpg }}]] |
+                [[RFIDInterferenceIssues|{{ http://www.playfulinternet.co.uk/files/EX6.jpg }}]] |
+"""
+

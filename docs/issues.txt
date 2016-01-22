@@ -14,4 +14,5 @@ Note of issues with various pieces of code as they arise.
     * Actuator code in aggregate analyser is a stub - needs to join to the Serial
       output code
       
+    * Actual start time vs planned start times - different in real events
 

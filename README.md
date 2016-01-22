@@ -108,6 +108,16 @@ TBD:
     
 Installation as a collator / etc (see docs/todo.txt)
 
+Configuration
+=============
+
+Configuration is based on a cascading/inheriting approach. While this make
+look more complex than some schemes, its specifically designed to simplify
+maintance and configuration.
+
+Most of the nodes in a waypoint system will be tag readers. Some will be
+collators. Others may have as yet to be defined roles for sensing and
+control.
 
 
 Michael

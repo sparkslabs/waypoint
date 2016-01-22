@@ -12,6 +12,7 @@ import os
 
 system_nodeid = os.popen("hostname").read().strip()
 
+
 class TagReader(Axon.ThreadedComponent.threadedcomponent):
     delay = 0.01
     def main(self):
@@ -30,12 +31,14 @@ class TagReader(Axon.ThreadedComponent.threadedcomponent):
             time.sleep(self.delay)
         rfidtag_close()
 
+
 def FestivalTagReader(nodeid):
     return Pipeline( 
                      TagReader(),
                      PureTransformer(lambda tagid: [time.time(), tagid, [nodeid,system_nodeid]]),
                      PureTransformer(lambda x: json.dumps(x)+"\n") # CHANGE: Added \n
                    )
+
 
 class GotShutdownMessage(Exception):
     pass
@@ -67,6 +70,7 @@ class LineSplitter(Axon.Component.component):  # CHANGE: EXTRA
         self.send(Axon.Ipc.producerFinished(), "signal")
         yield 1
 
+
 class Logger(Axon.Component.component):
     logfile = "test.log"
     def logline(self, line):
@@ -97,23 +101,3 @@ class Logger(Axon.Component.component):
 
         self.send(Axon.Ipc.producerFinished(), "signal")
         yield 1
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -3,7 +3,6 @@ Todo
 
 These are *roughly* in desired order.
 
-3. Hardware set up for multiple tag readers
 
 5.5 Implement a means for a node to "come up" as a tag reader, as the
     collator or as both.
@@ -16,28 +15,24 @@ This is essentially an overall analyser which performs aggregate analysis. (eg t
 
 Agreed that for the overall project:
 
-We need an aggregation function to be implemented.  **DONE**
+    We need an aggregation function to be implemented.  **DONE**
+    This MUST provide an aggregation over the entire ‘event’ or ‘festival’ period of the number of tags scanned.  **DONE**
+    And if development time permits, SHOULD be able to provide the above on a sliding time window basis (i.e. the total number of tags scanned within the last x minutes from  the time of the query) **DONE**
+    AND provide this function on a zone (tag reader) by zone basis.
+    The above to be co-located with the FEP.  **DONE**
 
-This MUST provide an aggregation over the entire ‘event’ or ‘festival’ period of the number of tags scanned.  **DONE**
-
-
-And if development time permits, SHOULD be able to provide the above on a sliding time window basis (i.e. the total number of tags scanned within the last x minutes from  the time of the query) **DONE**
-
-
-AND provide this function on a zone (tag reader) by zone basis.
-
-The above to be co-located with the FEP.  **DONE**
-
-
- 
 That a reduced form of aggregator should be co-located with each tag reader and provide an output to indicate that a tag has been scanned.  There should be considerable code re-use between this function and the more fully functioned aggregator described above.
 
 To develop the system as demonstrated into a standalone tag reader solution in which each tag reader is able to gather local activity data, drive an actuator for user feedback but that these are not integrated thereby forcing any aggregation or post event analysis to be performed off line.
 
 6. Implement initial participant analyser/front end
 
-An analyser will take log events, process them, put them into a DB, which a GUI front end (likely a web front end) can query to present activity by a specific tag id.
-This is essentially an aggregator for a particular tag id presented as a sequence.
+An analyser will take log events,
+  - process them
+  - put them into a DB
+  - which a GUI front end (likely a web front end) can query to present activity by a specific tag id.
+
+  This is essentially an aggregator for a particular tag id presented as a sequence.
 
 Depends: Task 2
 
@@ -95,10 +90,3 @@ Depended on by: NA
 12. Toolset documentation
 
 13. Toolset overview docs & dissemination
-
-
-
-
-
-
-

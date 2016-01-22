@@ -1,4 +1,21 @@
 {
-  "greet": "hello",
-  "who": "world"
+    "localconfig" : {
+        "tagreader": true,
+        "collator": false,
+        "collatorfeeder": false,
+        "tagdebugserver": true,
+        "node_id" : 1,
+    },
+    "systemconfig" : {
+        "tagreader": {
+            "logfile": "/var/logs/waypointservice/tagsread.log"
+        },
+        "collatorfeeder" : {
+            "collator_ip": "127.0.0.1",
+            "collator_port": 1600
+        },
+        "tagdebugserver" : {
+            "debug_port" : 1500
+        }
+    }
 }

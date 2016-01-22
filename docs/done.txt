@@ -102,3 +102,22 @@ Task log related complete:
         This is essentially an overall analyser which performs aggregate
         analysis. (eg total number of tag taps)
 
+    * 3. Hardware set up for multiple tag readers
+
+Log format: (on tag reader)
+
+[1353334080.212733, 18446744072245347450, [1, "kamaelian"]]
+[timestamp of read, tag id [nodeid, hostname/actuatorID]]
+
+
+Log format: (on collator)
+
+[{"peer": "127.0.0.1", "localip": "127.0.0.1", "peerport": 59787, "localport": 1600}, 1353334239.379761, [1353334078.582965, 18446744072245347450, [1,  "kamaelian"]]]
+
+ [ conn_info_object, timestamp of reception, logline from tag reader ]
+ Where
+ conn_info_object is a json object with 4 keys:
+     localip - IP of the collator
+     localport - port the collator was listening on
+     peer - IP of the peer
+     peerport - ephemeral port allocated too the connection (allows for detection of identically configured tag readers but different - assuming not a plumbed connector)
